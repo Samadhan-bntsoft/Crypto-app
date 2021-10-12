@@ -10,9 +10,10 @@ import {
   ThunderboltOutlined,
 } from "@ant-design/icons";
 import millify from "millify";
+import StatsComponent from "../CryptoObject/StatsComponent";
+import GenericStatObject from "../CryptoObject/GenericStatObject";
 
-
-export const stat = (cryptoDetails) => [
+const stat = (cryptoDetails) => [
   {
     title: "Price to USD",
     value: `$ ${cryptoDetails.price && millify(cryptoDetails.price)}`,
@@ -38,7 +39,7 @@ export const stat = (cryptoDetails) => [
 
 
 
- export const genericStat = (cryptoDetails) => [
+ const genericStat = (cryptoDetails) => [
    {
      title: "Number Of Markets",
      value: cryptoDetails.numberOfMarkets,
@@ -66,4 +67,7 @@ export const stat = (cryptoDetails) => [
    },
 ];
  
- export const time = ["3h", "24h", "7d", "30d", "3m", "1y", "3y", "5y"];
+ const time = ["3h", "24h", "7d", "30d", "3m", "1y", "3y", "5y"];
+
+
+ export { stat, genericStat, time, StatsComponent, GenericStatObject } 

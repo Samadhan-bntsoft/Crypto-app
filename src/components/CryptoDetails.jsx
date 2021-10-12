@@ -10,9 +10,7 @@ import {
 } from "../services/CryptoApi";
 import Loader from "./Loader";
 import LineChart from "./LineChart";
-import { time } from "../CryptoObject";
-import StatsComponent from "../CryptoObject/StatsComponent";
-import GenericStatObject from "../CryptoObject/GenericStatObject";
+import { GenericStatObject, StatsComponent, time } from "../CryptoObject";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -57,7 +55,7 @@ const CryptoDetails = () => {
       />
       <Col className="stats-container">
         {cryptoDetails && <StatsComponent cryptodetails={cryptoDetails} />}
-          {cryptoDetails && <GenericStatObject cryptodetails={cryptoDetails} />}
+        {cryptoDetails && <GenericStatObject cryptodetails={cryptoDetails} />}
       </Col>
       <Col className="coin-desc-link">
         <Row className="coin-desc">

@@ -1,57 +1,32 @@
 import React from "react";
-import millify from "millify";
 import { Typography, Row, Col, Statistic } from "antd";
 import { Link } from "react-router-dom";
 import { useGetCryptosQuery } from "../services/CryptoApi";
 import { Cryptocurrencies, News } from "../components";
 import Loader from "./Loader";
+import { GlobalStat } from "../HomepageReuse/GlobalStat";
 
 const { Title } = Typography;
 const Homepage = () => {
   const { data, isFetching } = useGetCryptosQuery(10);
 
   const globalStats = data?.data?.stats;
-  
+
   if (isFetching) return <Loader />;
 
+  const stat = GlobalStat(globalStats);
 
-  
   return (
     <>
       <Title level={2} className="heading">
         Global Crypto Stats
       </Title>
       <Row>
-        <Col span={12}>
-          <Statistic
-            title="Total Cryptocurrencies"
-            value={millify(globalStats.total)}
-          />
-        </Col>
-        <Col span={12}>
-          <Statistic
-            title="Total Exchanges"
-            value={millify(globalStats.totalExchanges)}
-          />
-        </Col>
-        <Col span={12}>
-          <Statistic
-            title="Total Market Cap"
-            value={millify(globalStats.totalMarketCap)}
-          />
-        </Col>
-        <Col span={12}>
-          <Statistic
-            title="Total 24h Volume"
-            value={millify(globalStats.total24hVolume)}
-          />
-        </Col>
-        <Col span={12}>
-          <Statistic
-            title="Total Markets"
-            value={millify(globalStats.totalMarkets)}
-          />
-        </Col>
+        {stat.map(({ title, value },i) => (
+          <Col span={12} key={i}>
+            <Statistic title={title} value={value} />
+          </Col>
+        ))}
       </Row>
       <div className="home-heading-container">
         <Title level={2} className="home-title">
