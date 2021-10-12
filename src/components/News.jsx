@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
-import { Link } from "react-router-dom";
 import { useGetCryptoNewsQuery } from "../services/CryptoNewsApi";
 import { useGetCryptosQuery } from "../services/CryptoApi";
+import Loader from "./Loader";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -18,8 +18,7 @@ const News = ({ simplified }) => {
     newsCategory,
     count: simplified ? 6 : 12,
   });
-  if (!cryptoNews?.value) return "Loading...";
-  console.log(cryptoNews?.value);
+  if (!cryptoNews?.value) return <Loader />;
   return (
     <Row gutter={[24, 24]}>
       {!simplified && (

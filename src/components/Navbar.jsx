@@ -11,8 +11,10 @@ import {
 import icon from "../images/icon.png";
 
 const Navbar = () => {
+  
   const [activeMenu, setactiveMenu] = useState(true)
   const [screenSize, setscreenSize] = useState(null)
+
 
   useEffect(() => {
     const handleSize = () => setscreenSize(window.innerWidth);

@@ -8,18 +8,21 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useGetExchangesQuery } from "../services/CryptoApi";
 import millify from "millify";
 import parse from "html-react-parser";
+import Loader from "./Loader";
 
+  const exchangesTitle = ['Exchanges','24h Trade Volume','Markets','Change'];
 
  function Row(props) {
    const { row } = props
-  const [open, setOpen] = React.useState(false);
+   const [open, setOpen] = React.useState(false);
    
+   console.log(row)
   return (
     <>
       <TableRow key={row.id}>
@@ -47,12 +50,12 @@ import parse from "html-react-parser";
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-              <Typography variant="h6" gutterBottom component="h6">
+              <Typography variant="h6" gutterBottom >
                 Description
               </Typography>
-              <Typography  component="div">{parse(`${row.description}`)}</Typography>
+              <Typography >{parse(`${row.description}`)}</Typography>
           </Collapse>
         </TableCell>
       </TableRow>
@@ -65,29 +68,33 @@ export default function Exchanges() {
 
   const { data } = useGetExchangesQuery();
   const exchanges = data?.data?.exchanges;
-  if (!exchanges) return "Loading...";
+  if (!exchanges) return <Loader />;
   return (
-      <TableContainer component={Paper}>
-        <Typography component="h2" variant="h5" m={2}>
-          Exchanges report
-        </Typography>
+    <TableContainer component={Paper}>
+      <Typography component="h2" variant="h5" m={2}>
+        Exchanges report
+      </Typography>
 
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell align="center">Exchanges</TableCell>
-              <TableCell align="center">24h Trade Volume</TableCell>
-              <TableCell align="center">Markets</TableCell>
-              <TableCell align="center">Change</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {exchanges.map((row) => (
-              <Row key={row.id} row={row} />
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            {/* <TableCell align="center">Exchanges</TableCell>
+            <TableCell align="center">24h Trade Volume</TableCell>
+            <TableCell align="center">Markets</TableCell>
+            <TableCell align="center">Change</TableCell> */}
+      
+            {exchangesTitle.map((row) => (
+              <TableCell align="center">{row}</TableCell>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {exchanges.map((row) => (
+            <Row key={row.id} row={row} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }

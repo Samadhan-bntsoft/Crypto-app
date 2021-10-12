@@ -8,11 +8,11 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+  for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
     coinPrice.push(coinHistory?.data?.history[i].price);
   }
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+  for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
     coinTimestamp.push(
       new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString()
     );
@@ -47,7 +47,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
     <>
       <Row className="chart-header">
         <Title level={2} className="chart-title">
-          {coinName} Price Chart{" "}
+          {coinName} Price Chart
         </Title>
         <Col className="price-container">
           <Title level={5} className="price-change">

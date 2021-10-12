@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Typography, Space } from "antd";
-import { Switch, Route, Link,BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 import {
   Navbar,
   Homepage,
@@ -9,10 +9,9 @@ import {
   CryptoDetails,
   News,
 } from "./components";
-import  "./app.css";
+import "./app.css";
 
 const App = () => {
-
   return (
     <Router>
       <div className="app">

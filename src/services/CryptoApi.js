@@ -14,17 +14,24 @@ export const cryptoApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_CRYPTO_API_URL }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: (count) => createRequest(`/coins?limit=${count}`),
+      query: (count) =>
+        createRequest(
+          `/coins?x-access-token=i-have-to-migrate-to-v2`
+        ),
     }),
     getExchanges: builder.query({
-      query: () => createRequest("/exchanges"),
+      query: () =>
+        createRequest("/exchanges?x-access-token=i-have-to-migrate-to-v2"),
     }),
     getCryptoDetails: builder.query({
-      query: (coinId) => createRequest(`/coin/${coinId}`),
+      query: (coinId) =>
+        createRequest(`/coin/${coinId}?x-access-token=i-have-to-migrate-to-v2`),
     }),
     getCryptoHistory: builder.query({
       query: ({ coinId, timeperiod }) =>
-        createRequest(`coin/${coinId}/history/${timeperiod}`),
+        createRequest(
+          `coin/${coinId}/history/${timeperiod}?x-access-token=i-have-to-migrate-to-v2`
+        ),
     }),
   }),
 });
@@ -32,6 +39,6 @@ export const cryptoApi = createApi({
 export const {
   useGetCryptosQuery,
   useGetCryptoDetailsQuery,
-  useGetExchangesQuery,
   useGetCryptoHistoryQuery,
+  useGetExchangesQuery,
 } = cryptoApi;
