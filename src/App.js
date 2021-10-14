@@ -8,6 +8,8 @@ import {
   Cryptocurrencies,
   CryptoDetails,
   News,
+  SaveUser,
+  EditUser,
 } from "./components";
 import "./app.css";
 
@@ -36,6 +38,12 @@ const App = () => {
                 </Route>
                 <Route exact path="/news">
                   <News />
+                </Route>
+                <Route exact path="/adduser">
+                  <SaveUser />
+                </Route>
+                <Route exact path="/edituser/:id">
+                  <EditUser />
                 </Route>
               </Switch>
             </div>

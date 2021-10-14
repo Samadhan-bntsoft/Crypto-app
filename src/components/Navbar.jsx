@@ -7,6 +7,7 @@ import {
   BulbOutlined,
   FundOutlined,
   MenuOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import icon from "../images/icon.png";
 
@@ -60,6 +61,9 @@ const Navbar = () => {
           </Menu.Item>
           <Menu.Item icon={<BulbOutlined />}>
             <Link to="/news">News</Link>
+          </Menu.Item>
+          <Menu.Item icon={<UserOutlined />}>
+            <Link to="/adduser">Add user</Link>
           </Menu.Item>
         </Menu>
       )}
